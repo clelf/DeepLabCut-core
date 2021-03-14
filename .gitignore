@@ -112,6 +112,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+DLC-TF2-CLF/
 
 # Spyder project settings
 .spyderproject
@@ -130,3 +131,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# Tensorflow checkpoints:
+.ckpt

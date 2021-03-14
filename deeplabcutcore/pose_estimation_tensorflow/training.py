@@ -11,6 +11,7 @@ Licensed under GNU Lesser General Public License v3.0
 import os
 from pathlib import Path
 
+from benchmark.profiling import profile_this
 
 def return_train_network_path(config, shuffle, trainFraction):
     ''' Returns the training and test pose config file names as well as the folder where the snapshot is
@@ -39,7 +40,7 @@ def return_train_network_path(config, shuffle, trainFraction):
 
     return trainposeconfigfile,testposeconfigfile,snapshotfolder
 
-
+@profile_this()
 def train_network(config,shuffle=1,trainingsetindex=0,
                   max_snapshots_to_keep=5,displayiters=None,saveiters=None,maxiters=None,
                   allow_growth=False,gputouse=None,autotune=False,keepdeconvweights=True):

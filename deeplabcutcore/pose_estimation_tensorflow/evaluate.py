@@ -19,6 +19,8 @@ import pandas as pd
 from tqdm import tqdm
 from pathlib import Path
 
+from benchmark.profiling import profile_this
+
 def pairwisedistances(DataCombined,scorer1,scorer2,pcutoff=-1,bodyparts=None):
     ''' Calculates the pairwise Euclidean distance metric over body parts vs. images'''
     mask=DataCombined[scorer2].xs('likelihood',level=1,axis=1)>=pcutoff
@@ -179,6 +181,8 @@ def return_evaluate_network_data(config,shuffle=0,trainingsetindex=0,comparisonb
     else:
         return results
 
+
+@profile_this()
 def evaluate_network(config,Shuffles=[1],trainingsetindex=0,plotting = None,show_errors = True,comparisonbodyparts="all",gputouse=None, rescale=False):
     """
 

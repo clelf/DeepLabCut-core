@@ -28,10 +28,14 @@ from deeplabcutcore.utils import auxiliaryfunctions
 import cv2
 from skimage.util import img_as_ubyte
 
+from benchmark.profiling import profile_this
+
+
 ####################################################
 # Loading data, and defining model folder
 ####################################################
 
+@profile_this()
 def analyze_videos(config, videos, videotype='avi', shuffle=1, trainingsetindex=0, gputouse=None, save_as_csv=False,
                    destfolder=None, batchsize=None, crop=None, get_nframesfrommetadata=True, TFGPUinference=True,
                    dynamic=(False, .5, 10)):
@@ -615,7 +619,7 @@ def GetPosesofFrames(cfg,dlc_cfg, sess, inputs, outputs,directory,framelist,nfra
     pbar.close()
     return PredictedData,nframes,nx,ny
 
-
+@profile_this()
 def analyze_time_lapse_frames(config,directory,frametype='.png',shuffle=1,
                 trainingsetindex=0,gputouse=None,save_as_csv=False,rgb=True):
     """
